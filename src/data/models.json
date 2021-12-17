@@ -96,7 +96,7 @@
     "url": "https://stream.watsonplatform.net/speech-to-text/api/v1/models/ja-JP_BroadbandModel",
     "rate": 16000,
     "filename": "ja-JP_Broadband-sample.wav",
-    "keywords": "音声認識, ディープラーニング, 技術",
+    "keywords": "日本限定にして空文字で分ける, 音声認識, ディープラーニング, 技術",
     "supported_features": {
       "custom_language_model": true,
       "speaker_labels": true

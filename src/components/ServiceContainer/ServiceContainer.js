@@ -7,6 +7,7 @@ import Toast from '../Toast';
 import { actionTypes, initialState, reducer } from './reducer';
 import { convertAudioBlobToVisualizationData, formatStreamData } from './utils';
 import { createError } from '../../utils';
+import axios from 'axios';
 
 const FILE_UPLOAD_ERROR_TITLE = 'File upload error';
 const FILE_UPLOAD_ERROR_DESCRIPTION =
@@ -36,6 +37,7 @@ export const ServiceContainer = () => {
       audioContext,
       type: actionTypes.setAudioContext,
     });
+    
   }, []);
 
   const parseResults = data => {
@@ -213,8 +215,34 @@ export const ServiceContainer = () => {
     });
   };
 
-  const onStartPlayingFileUpload = async recognizeConfig => {
+  const onStartPlayingFileUpload = async ({ recognizeConfig, keywords }) => {
     cleanUpOldStreamIfNecessary();
+    // console.log(recognizeConfig.file);
+
+    var params = new FormData();
+    // const keywords = this.props.keyword
+    console.log('keyword service', keywords, recognizeConfig);
+    var url = `http://localhost:3000/watson-speech-to-text/detection/${keywords}`
+    // var url = `http://localhost:3000/watson-speech-to-text/detection/する`
+    // var fileSelectDom = $('[name=\`audio\`]')[0];
+    
+    params.append('audio', recognizeConfig.file);
+    // TODO: await なので、thenは使わずtrycatch
+    await axios.post(url, params)
+      .then(function(response) {
+        // 成功時
+        console.log('response: ', response);
+        dispatch({
+          speechAnalyzer: response.data.search,
+          type: actionTypes.setResTextAnalyzer,
+        });
+
+        return response;
+      })
+      .catch(function(error) {
+        // エラー時
+        console.error(error);
+      });
 
     const stream = recognizeFile(recognizeConfig);
     await readAudioFileForVisualization(recognizeConfig.file);
@@ -367,6 +395,7 @@ export const ServiceContainer = () => {
         isTranscribing={state.isTranscribing}
         keywordInfo={state.keywordInfo}
         transcriptArray={state.transcript}
+        speechAnalyzer={state.speechAnalyzer}
       />
     </div>
   );

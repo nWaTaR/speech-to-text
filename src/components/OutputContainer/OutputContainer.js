@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import { FormGroup, Tile } from 'carbon-components-react';
 import AudioWave from '../AudioWave';
 import TranscriptBox from '../TranscriptBox';
+import SpeechToText from '../SpeechToText';
 
 export const OutputContainer = ({
   audioAnalyzer,
@@ -13,6 +14,7 @@ export const OutputContainer = ({
   isTranscribing,
   keywordInfo,
   transcriptArray,
+  speechAnalyzer,
 }) => (
   <Tile className="output-container">
     <h3 className="container-title">Output</h3>
@@ -32,9 +34,16 @@ export const OutputContainer = ({
         transcriptArray={transcriptArray}
       />
     </FormGroup>
+    <FormGroup legendText="DetectionPosition">
+      <SpeechToText
+        speechAnalyzer={speechAnalyzer}
+       />
+    </FormGroup>
   </Tile>
 );
 
+
+console.log('speech output: ', PropTypes.arrayOf(PropTypes.object));
 OutputContainer.propTypes = {
   audioAnalyzer: PropTypes.object.isRequired,
   audioDataArray: PropTypes.arrayOf(PropTypes.number),
@@ -44,6 +53,7 @@ OutputContainer.propTypes = {
   isTranscribing: PropTypes.bool,
   keywordInfo: PropTypes.arrayOf(PropTypes.object),
   transcriptArray: PropTypes.arrayOf(PropTypes.object),
+  speechAnalyzer: PropTypes.arrayOf(PropTypes.object),
 };
 
 OutputContainer.defaultProps = {
@@ -53,6 +63,7 @@ OutputContainer.defaultProps = {
   isTranscribing: false,
   keywordInfo: [],
   transcriptArray: [],
+  speechAnalyzer: [],
 };
 
 export default OutputContainer;

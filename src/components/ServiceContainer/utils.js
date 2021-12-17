@@ -38,6 +38,7 @@ export const formatStreamData = data => {
     let speaker = null;
     let keywords_result = null;
 
+    // 既存の最終result
     if (final) {
       ({ alternatives, speaker, keywords_result } = result);
     } else {
