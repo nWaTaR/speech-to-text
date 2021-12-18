@@ -1,0 +1,17 @@
+apiVersion: triggers.tekton.dev/v1alpha1
+kind: EventListener
+metadata:
+  name: api-webhook
+spec:
+  serviceAccountName: tekton-triggers-sa
+  triggers:
+    - name: deploy-trigger-for-frontend
+      bindings:
+      - ref: frontend-triggerbinding
+      template:
+        ref: frontend-triggertemplate
+      interceptors:
+      - github:
+          eventTypes: ["push"]
+      - cel:
+          filter: "body.repository.name == 'watson-speech-to-text-frontend' && body.ref.split('/')[2] == 'master'"

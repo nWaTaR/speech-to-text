@@ -29,9 +29,7 @@ export class SpeechToText extends React.Component {
 
   }
 
-  componentDidUpdate(prevProps) {
-    console.log('props 2: ', this.props);
-    console.log('props 3: ', prevProps);
+  componentDidUpdate() {
     // const [firstPrevValue] = prevProps.data;
     // const [firstCurrentValue] = this.props.data;
 
@@ -54,7 +52,7 @@ export class SpeechToText extends React.Component {
   }
 
   render() {
-    console.log('bbbbbb speechAnalyzer:', this.props);
+    // console.log('bbbbbb speechAnalyzer:', this.props);
     const json = JSON.stringify(this.props.speechAnalyzer);
     return (
       <div className="speechToText">

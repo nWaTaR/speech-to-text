@@ -1,0 +1,12 @@
+apiVersion: triggers.tekton.dev/v1alpha1
+kind: TriggerBinding
+metadata:
+  name: frontend-triggerbinding
+spec:
+  params:
+    - name: namespace
+      value: watson-speech-to-text-frontend
+    - name: gitrepositoryurl
+      value: $(body.repository.url)
+    - name: gitrepositoryname
+      value: $(body.repository.name)

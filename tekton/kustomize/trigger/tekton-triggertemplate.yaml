@@ -1,0 +1,18 @@
+apiVersion: triggers.tekton.dev/v1alpha1
+kind: TriggerTemplate
+metadata:
+  name: frontend-triggertemplate
+spec:
+  resourcetemplates:
+    - apiVersion: tekton.dev/v1beta1
+      kind: PipelineRun
+      metadata:
+        generateName: nishiki-watson-speech-to-text-frontend-pipeline-run-
+      spec:
+        serviceAccountName: build-bot
+        pipelineRef:
+          name: nishiki-watson-speech-to-text-frontend-pipeline
+        workspaces:
+          - name: pipeline-shared-data
+            persistentVolumeClaim:
+              claimName: nishiki-watson-speech-to-text-frontend-pvc

@@ -7,7 +7,7 @@ import Toast from '../Toast';
 import { actionTypes, initialState, reducer } from './reducer';
 import { convertAudioBlobToVisualizationData, formatStreamData } from './utils';
 import { createError } from '../../utils';
-import axios from 'axios';
+import axios from './setting';
 
 const FILE_UPLOAD_ERROR_TITLE = 'File upload error';
 const FILE_UPLOAD_ERROR_DESCRIPTION =
@@ -222,12 +222,24 @@ export const ServiceContainer = () => {
     var params = new FormData();
     // const keywords = this.props.keyword
     console.log('keyword service', keywords, recognizeConfig);
-    var url = `http://localhost:3000/watson-speech-to-text/detection/${keywords}`
+    var url = axios.defaults.baseURL + `/watson-speech-to-text/detection/${keywords}`
+    // var url = axios.defaults.baseURL + `/helloworld`
     // var url = `http://localhost:3000/watson-speech-to-text/detection/する`
     // var fileSelectDom = $('[name=\`audio\`]')[0];
     
     params.append('audio', recognizeConfig.file);
     // TODO: await なので、thenは使わずtrycatch
+    // await axios.get(url, params)
+    //   .then(function(response) {
+    //     // 成功時
+    //     console.log('response: ', response);
+
+    //     return response;
+    //   })
+    //   .catch(function(error) {
+    //     // エラー時
+    //     console.error(error);
+    //   });
     await axios.post(url, params)
       .then(function(response) {
         // 成功時
@@ -367,7 +379,7 @@ export const ServiceContainer = () => {
           title={state.error.title}
           subtitle={state.error.description}
           hideAfterFirstDisplay={false}
-          timeout={5000}
+          timeout={100000}
           onCloseButtonClick={() =>
             dispatch({ error: null, type: actionTypes.setError })
           }
