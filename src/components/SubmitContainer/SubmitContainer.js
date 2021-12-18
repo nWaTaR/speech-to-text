@@ -163,7 +163,8 @@ export const SubmitContainer = ({
             const uploadedFile = evt.currentTarget.files[0];
             const config = await getUploadAudioConfig(uploadedFile);
             if (!config.error) {
-              onStartPlayingFileUpload(config);
+              // console.log(config);
+              onStartPlayingFileUpload({ recognizeConfig: config, keywords: keywordList });
             }
           }}
         />

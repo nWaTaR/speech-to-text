@@ -11,6 +11,7 @@ export const actionTypes = {
   setIsTranscribing: 'SET_IS_TRANSCRIBING',
   setIsUploadPlaying: 'SET_IS_UPLOAD_PLAYING',
   updateResults: 'UPDATE_RESULTS',
+  setResTextAnalyzer: 'SET_RES_TEXT_ANALYZER',
 };
 
 export const initialState = {
@@ -28,9 +29,11 @@ export const initialState = {
   keywordInfo: [],
   speakerLabels: [],
   transcript: [],
+  speechAnalyzer: []
 };
 
 export const reducer = (state, action) => {
+  console.log('aaaaaaaa reducer:', action.speechAnalyzer, 'state: ', state);
   switch (action.type) {
     case 'SET_AUDIO_ANALYZER': {
       return {
@@ -106,12 +109,20 @@ export const reducer = (state, action) => {
       } else {
         updatedTranscript[action.resultIndex] = action.transcript[0];
       }
-
       return {
         ...state,
         keywordInfo: action.keywordInfo,
         transcript: updatedTranscript,
       };
+    }
+    case 'SET_RES_TEXT_ANALYZER': {
+      console.log('action set res text', action.speechAnalyzer, state);
+      // return action.speechAnalyzer
+      // return state
+      return {
+        ...state,
+        speechAnalyzer: action.speechAnalyzer,
+      }
     }
     default: {
       throw new Error();
