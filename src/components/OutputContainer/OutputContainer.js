@@ -1,39 +1,13 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { FormGroup, Tile } from 'carbon-components-react';
-// import AudioWave from '../AudioWave';
-// import TranscriptBox from '../TranscriptBox';
 import SpeechToText from '../SpeechToText';
 
 export const OutputContainer = ({
-  // audioAnalyzer,
-  // audioDataArray,
-  // audioDuration,
-  // audioSource,
-  // audioWaveContainerRef,
-  // isTranscribing,
-  // keywordInfo,
-  // transcriptArray,
   speechAnalyzer,
 }) => (
   <Tile className="output-container">
     <h3 className="container-title">Output</h3>
-    {/* <FormGroup legendText="Audio">
-      <AudioWave
-        audioWaveContainerRef={audioWaveContainerRef}
-        data={audioDataArray}
-        duration={audioDuration}
-        isTranscribing={isTranscribing}
-        audioSource={audioSource}
-        audioAnalyzer={audioAnalyzer}
-      />
-    </FormGroup> */}
-    {/* <FormGroup legendText="Transcript">
-      <TranscriptBox
-        keywordInfo={keywordInfo}
-        transcriptArray={transcriptArray}
-      />
-    </FormGroup> */}
     <FormGroup legendText="Transcript">
       <SpeechToText
         speechAnalyzer={speechAnalyzer}
@@ -42,7 +16,6 @@ export const OutputContainer = ({
   </Tile>
 );
 
-console.log('speech output: ', PropTypes.arrayOf(PropTypes.object));
 OutputContainer.propTypes = {
   audioAnalyzer: PropTypes.object.isRequired,
   audioDataArray: PropTypes.arrayOf(PropTypes.number),

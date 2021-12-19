@@ -217,33 +217,16 @@ export const ServiceContainer = () => {
 
   const onStartPlayingFileUpload = async ({ recognizeConfig, keywords }) => {
     cleanUpOldStreamIfNecessary();
-    // console.log(recognizeConfig.file);
 
     var params = new FormData();
-    // const keywords = this.props.keyword
-    console.log('keyword service', keywords, recognizeConfig);
     var url = axios.defaults.baseURL + `/watson-speech-to-text/detection/${keywords}`
-    // var url = axios.defaults.baseURL + `/helloworld`
-    // var url = `http://localhost:3000/watson-speech-to-text/detection/する`
     // var fileSelectDom = $('[name=\`audio\`]')[0];
     
     params.append('audio', recognizeConfig.file);
-    // TODO: await なので、thenは使わずtrycatch
-    // await axios.get(url, params)
-    //   .then(function(response) {
-    //     // 成功時
-    //     console.log('response: ', response);
-
-    //     return response;
-    //   })
-    //   .catch(function(error) {
-    //     // エラー時
-    //     console.error(error);
-    //   });
+    // TODO: try catchに書き換え
     await axios.post(url, params)
       .then(function(response) {
         // 成功時
-        console.log('response: ', response);
         dispatch({
           speechAnalyzer: response.data,
           type: actionTypes.setResTextAnalyzer,

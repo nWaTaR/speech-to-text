@@ -52,7 +52,6 @@ export const ControlContainer = ({
     <Tile className="control-container">
       <h3 className="container-title">Input</h3>
       <FormGroup legendText="Language model">
-        {/* 日本に固定する */}
         <Dropdown
           id="language-model-dropdown"
           label="Select a language model"
@@ -73,7 +72,6 @@ export const ControlContainer = ({
           invalidText="Invalid keywords provided"
           value={keywordText}
           onChange={evt => {
-            console.log('keyword 2', evt.target.value);
             setKeywordText(evt.target.value);
           }}
           light
