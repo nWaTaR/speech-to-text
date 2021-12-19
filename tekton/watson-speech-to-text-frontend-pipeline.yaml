@@ -2,7 +2,7 @@ apiVersion: tekton.dev/v1beta1
 kind: Pipeline
 metadata:
   annotations:
-    app.openshift.io/runtime: nodejs
+    app.openshift.io/runtime: docker.io/library/node:14.18-alpine
   name: nishiki-watson-speech-to-text-frontend-pipeline
 spec:
   workspaces:
@@ -38,24 +38,27 @@ spec:
         - name: ARGS
           value: 
             - clean-install
-    - name: run-tests
-      runAfter:
-        - install-dependencies
-      taskRef:
-        kind: Task
-        name: npm
-      workspaces:
-        - name: source
-          workspace: pipeline-shared-data
-      params:
-        - name: ARGS
-          value: 
-            - test
         - name: IMAGE
-          value: "docker.io/library/node:14-alpine"
+          value: "docker.io/library/node:14.18-alpine"
+    # - name: run-tests
+    #   runAfter:
+    #     - install-dependencies
+    #   taskRef:
+    #     kind: Task
+    #     name: npm
+    #   workspaces:
+    #     - name: source
+    #       workspace: pipeline-shared-data
+    #   params:
+    #     - name: ARGS
+    #       value: 
+    #         - test
+    #     - name: IMAGE
+    #       value: "docker.io/library/node:14.18-alpine"
     - name: build-image
       runAfter:
-        - run-tests
+        # - run-tests
+        - install-dependencies
       taskRef:
         kind: Task
         name: buildah
