@@ -100,3 +100,21 @@ This code pattern is licensed under the Apache License, Version 2. Separate thir
 Add
 
 axios: httpリクエスト用
+
+## How to setup on local
+
+```sh
+docker build --no-cache \
+    --tag quay.io/wataru_nishiki1_ibm/watson-speech-to-text-frontend:<VERSION> .
+
+docker login quay.io
+username:
+password:
+
+# 環境変数読み込んでdocker run
+docker run --env-file .env --name watson-speech-to-text-frontend \
+    --publish 5000:5000 \
+    quay.io/wataru_nishiki1_ibm/watson-speech-to-text-frontend:<VERSION>
+
+docker push quay.io/wataru_nishiki1_ibm/watson-speech-to-text-frontend:<VERSION>
+```

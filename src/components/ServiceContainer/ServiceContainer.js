@@ -245,6 +245,10 @@ export const ServiceContainer = () => {
         // 成功時
         console.log('response: ', response);
         dispatch({
+          speechText: response.data.speechText,
+          type: actionTypes.setResSpeechText,
+        });
+        dispatch({
           speechAnalyzer: response.data.search,
           type: actionTypes.setResTextAnalyzer,
         });
@@ -407,6 +411,7 @@ export const ServiceContainer = () => {
         isTranscribing={state.isTranscribing}
         keywordInfo={state.keywordInfo}
         transcriptArray={state.transcript}
+        speechText={state.speechText}
         speechAnalyzer={state.speechAnalyzer}
       />
     </div>
