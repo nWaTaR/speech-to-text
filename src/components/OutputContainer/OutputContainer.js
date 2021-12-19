@@ -14,6 +14,7 @@ export const OutputContainer = ({
   // isTranscribing,
   keywordInfo,
   transcriptArray,
+  speechText,
   speechAnalyzer,
 }) => (
   <Tile className="output-container">
@@ -36,12 +37,12 @@ export const OutputContainer = ({
     </FormGroup>
     <FormGroup legendText="DetectionPosition">
       <SpeechToText
+        speechText={speechText}
         speechAnalyzer={speechAnalyzer}
        />
     </FormGroup>
   </Tile>
 );
-
 
 console.log('speech output: ', PropTypes.arrayOf(PropTypes.object));
 OutputContainer.propTypes = {
@@ -53,6 +54,7 @@ OutputContainer.propTypes = {
   isTranscribing: PropTypes.bool,
   keywordInfo: PropTypes.arrayOf(PropTypes.object),
   transcriptArray: PropTypes.arrayOf(PropTypes.object),
+  speechText: PropTypes.arrayOf(PropTypes.object),
   speechAnalyzer: PropTypes.arrayOf(PropTypes.object),
 };
 
@@ -63,6 +65,7 @@ OutputContainer.defaultProps = {
   isTranscribing: false,
   keywordInfo: [],
   transcriptArray: [],
+  speechText: '',
   speechAnalyzer: [],
 };
 

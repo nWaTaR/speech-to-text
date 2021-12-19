@@ -8,3 +8,5 @@ node_modules
 # Misc
 .DS_Store
 *.env
+
+tekton/create-watson-speech-to-text-api-key-secrets.yaml

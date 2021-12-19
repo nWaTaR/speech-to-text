@@ -53,10 +53,12 @@ export class SpeechToText extends React.Component {
 
   render() {
     // console.log('bbbbbb speechAnalyzer:', this.props);
+    const transcript = this.props.speechText;
     const json = JSON.stringify(this.props.speechAnalyzer);
     return (
       <div className="speechToText">
-        <p>{ json }text</p>
+        <p>{ transcript }</p>
+        <p>{ json }</p>
       </div>
     )
   }
@@ -86,10 +88,12 @@ export class SpeechToText extends React.Component {
 }
 
 SpeechToText.propTypes = {
+  speechText: PropTypes.arrayOf(PropTypes.object),
   speechAnalyzer: PropTypes.arrayOf(PropTypes.object),
 };
 
 SpeechToText.defaultProps = {
+  speechText: '',
   speechAnalyzer: [],
 };
 

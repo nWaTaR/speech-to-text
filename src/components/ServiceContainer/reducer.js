@@ -29,6 +29,7 @@ export const initialState = {
   keywordInfo: [],
   speakerLabels: [],
   transcript: [],
+  speechText: '',
   speechAnalyzer: []
 };
 
@@ -118,6 +119,7 @@ export const reducer = (state, action) => {
       console.log('action set res text', action.speechAnalyzer, state);
       return {
         ...state,
+        speechText: action.speechText,
         speechAnalyzer: action.speechAnalyzer,
       }
     }
