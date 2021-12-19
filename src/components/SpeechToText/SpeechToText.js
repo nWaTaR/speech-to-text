@@ -2,11 +2,6 @@ import React from 'react';
 // import axios from 'axios';
 import PropTypes from 'prop-types';
 
-// const DATA_POINT_WIDTH = 1;
-// const DATA_POINT_HEIGHT = 50;
-// const DATA_POINT_MARGIN = 2;
-// const DATA_POINT_Y_OFFSET = 50;
-
 export class SpeechToText extends React.Component {
   constructor(props) {
     super(props);
@@ -23,9 +18,7 @@ export class SpeechToText extends React.Component {
     // };
   }
 
-
   componentDidMount() {
-    console.log('props 1: ', this.props);
 
   }
 
@@ -54,21 +47,23 @@ export class SpeechToText extends React.Component {
   render() {
     // console.log('bbbbbb speechAnalyzer:', this.props);
     const transcript = this.props.speechAnalyzer.speechToText;
-    const json = JSON.stringify(this.props.speechAnalyzer.search);
+    let json = [];
+    // const searchDummy = [{keyword:"する",position:190,characterString:"前は便器恋するんですよハ"},{keyword:"する",position:239,characterString:"いやそれをするプロヴァン"}]
+    json.push(this.props.speechAnalyzer.search);
     return (
       <div className="speechToText">
+        <p>DetectionPosition</p>
         <p>{ transcript }</p>
-        <p>{ json }</p>
+        <ol>
+          {json.map((d) => (
+            <li key={d.position}>文字列の位置: {d.position}, 検索文字: {d.keyword}, 前後5文字含む文字列: {d.characterString}</li>
+          ))}
+        </ol>
       </div>
     )
   }
   // constructor(props) {
   //   super(props);
-
-  //   this.state = {
-  //     text: null
-  //   }; 
-  // }
 
   // componentDidMount() {
   //   axios.get(`http://localhost:3000/helloworld`)
