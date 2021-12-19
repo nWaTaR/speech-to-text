@@ -1,5 +1,5 @@
 /* eslint-disable no-undef */
-jest.setTimeout(10000);
+jest.setTimeout(20000);
 
 describe('Input methods', () => {
   beforeEach(async () => {
