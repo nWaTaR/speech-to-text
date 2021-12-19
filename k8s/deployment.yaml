@@ -16,7 +16,7 @@ spec:
     spec:
       containers:
         - name: watson-speech-to-text-frontend
-          image: quay.io/wataru_nishiki1_ibm/watson-speech-to-text-frontend:0.1.0
+          image: quay.io/wataru_nishiki1_ibm/watson-speech-to-text-frontend:latest
           imagePullPolicy: Always
           ports:
             - name: http-listener
