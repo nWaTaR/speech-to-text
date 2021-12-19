@@ -47,20 +47,28 @@ export class SpeechToText extends React.Component {
   render() {
     // console.log('bbbbbb speechAnalyzer:', this.props);
     const transcript = this.props.speechAnalyzer.speechToText;
-    let json = [];
     // const searchDummy = [{keyword:"する",position:190,characterString:"前は便器恋するんですよハ"},{keyword:"する",position:239,characterString:"いやそれをするプロヴァン"}]
-    json.push(this.props.speechAnalyzer.search);
-    return (
-      <div className="speechToText">
-        <p>DetectionPosition</p>
-        <p>{ transcript }</p>
-        <ol>
-          {json.map((d) => (
-            <li key={d.position}>文字列の位置: {d.position}, 検索文字: {d.keyword}, 前後5文字含む文字列: {d.characterString}</li>
-          ))}
-        </ol>
-      </div>
-    )
+    var json = this.props.speechAnalyzer.search;
+    if (json.length > 1) {
+      return (
+        <div className="speechToText">
+          <p>{ transcript }</p>
+          <p> </p>
+          <p>DetectionPosition</p>
+          <ol>
+            {json.map((d) => (
+              <li key={d.position}>文字列の位置: {d.position}, 検索文字: {d.keyword}, 前後5文字含む文字列: {d.characterString}</li>
+            ))}
+          </ol>
+        </div>
+      )
+    } else {
+      return (
+        <div className="speechToText">
+          <p>DetectionPosition</p>
+        </div>
+      )
+    }
   }
   // constructor(props) {
   //   super(props);
