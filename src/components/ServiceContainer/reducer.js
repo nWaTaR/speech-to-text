@@ -33,7 +33,6 @@ export const initialState = {
 };
 
 export const reducer = (state, action) => {
-  console.log('aaaaaaaa reducer:', action.speechAnalyzer, 'state: ', state);
   switch (action.type) {
     case 'SET_AUDIO_ANALYZER': {
       return {
@@ -117,8 +116,6 @@ export const reducer = (state, action) => {
     }
     case 'SET_RES_TEXT_ANALYZER': {
       console.log('action set res text', action.speechAnalyzer, state);
-      // return action.speechAnalyzer
-      // return state
       return {
         ...state,
         speechAnalyzer: action.speechAnalyzer,

@@ -1,0 +1,17 @@
+apiVersion: route.openshift.io/v1
+kind: Route
+metadata:
+  # annotations:
+  #   argocd.argoproj.io/sync-options: Validate=false
+  #   openshift.io/host.generated: "true"
+  name: frontend
+  labels:
+    app: watson-speech-to-text-frontend
+spec:
+  tls:
+    termination: edge
+  to:
+     kind: Service
+     name: watson-speech-to-text-frontend
+     weight: 100
+  wildcardPolicy: None
