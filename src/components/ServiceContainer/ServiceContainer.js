@@ -220,7 +220,6 @@ export const ServiceContainer = () => {
 
     var params = new FormData();
     var url = axios.defaults.baseURL + `/watson-speech-to-text/detection/${keywords}`
-    // var fileSelectDom = $('[name=\`audio\`]')[0];
     
     params.append('audio', recognizeConfig.file);
     // TODO: try catchに書き換え
