@@ -5,7 +5,7 @@
     "url": "https://stream.watsonplatform.net/speech-to-text/api/v1/models/ja-JP_BroadbandModel",
     "rate": 16000,
     "filename": "ja-JP_Broadband-sample.wav",
-    "keywords": "する",
+    "keywords": "する 変更",
     "supported_features": {
       "custom_language_model": true,
       "speaker_labels": true

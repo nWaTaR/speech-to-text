@@ -115,7 +115,6 @@ export const reducer = (state, action) => {
       };
     }
     case 'SET_RES_TEXT_ANALYZER': {
-      console.log('action set res text', action.speechAnalyzer, state);
       return {
         ...state,
         speechAnalyzer: action.speechAnalyzer,
